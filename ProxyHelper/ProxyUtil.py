@@ -12,9 +12,9 @@
 """
 __author__ = 'JHao'
 
-from Util import validUsefulProxy
-
 from datetime import datetime
+
+from Util import validUsefulProxy
 
 
 def checkProxyUseful(proxy_obj):
@@ -24,8 +24,9 @@ def checkProxyUseful(proxy_obj):
     :return: Proxy object, status
     """
 
-    if validUsefulProxy(proxy_obj.proxy):
-        # 检测通过 更新proxy属性
+    valid1 = validUsefulProxy(proxy_obj.proxy)
+    valid2 = validUsefulProxy(proxy_obj.proxy, delay=2)
+    if valid1 and valid2:
         proxy_obj.check_count += 1
         proxy_obj.last_status = 1
         proxy_obj.last_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

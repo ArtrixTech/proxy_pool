@@ -4,16 +4,18 @@
 -------------------------------------------------
    File Name：     utilFunction.py
    Description :  tool function
-   Author :       JHao
+   Author :       JHao, Artrix
    date：          2016/11/25
 -------------------------------------------------
    Change Activity:
                    2016/11/25: 添加robustCrawl、verifyProxy、getHtmlTree
+                   2020/02/20: Modified the proxy validation method, due to the previous one works poorly.
 -------------------------------------------------
 """
-import requests
+
 from lxml import etree
 
+from Util.validationClass import *
 from Util.WebRequest import WebRequest
 
 
@@ -76,20 +78,17 @@ def tcpConnect(proxy):
     return True if result == 0 else False
 
 
-def validUsefulProxy(proxy):
+def validUsefulProxy(proxy, delay=0):
     """
     检验代理是否可用
+    :param validation_obj:Validation Object
     :param proxy:
+    :param delay: Start delay of the validation process
     :return:
     """
-    if isinstance(proxy, bytes):
-        proxy = proxy.decode("utf8")
-    proxies = {"http": "http://{proxy}".format(proxy=proxy)}
+    time.sleep(delay)
     try:
-        r = requests.get('http://www.baidu.com', proxies=proxies, timeout=10, verify=False)
-        if r.status_code == 200:
-            return True
-    except Exception as e:
-        pass
-    return False
-
+        assert SuningTimeValidation().validate(proxy)
+        return True
+    except AssertionError:
+        return False

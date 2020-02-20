@@ -13,11 +13,7 @@
 __author__ = 'JHao'
 
 from threading import Thread
-
-try:
-    from Queue import Queue, Empty  # py2
-except:
-    from queue import Queue, Empty  # py3
+from queue import Queue, Empty  # py3
 
 from Util import LogHandler
 from Manager import ProxyManager
@@ -66,7 +62,7 @@ def doUsefulProxyCheck():
         proxy_queue.put(_proxy)
 
     thread_list = list()
-    for index in range(10):
+    for index in range(25):
         thread_list.append(UsefulProxyCheck(proxy_queue, "thread_%s" % index))
 
     for thread in thread_list:

@@ -42,11 +42,11 @@ DB_PASSWORD = getenv('db_password', '')
 """ 数据库配置 """
 DATABASES = {
     "default": {
-        "TYPE": DB_TYPE,
-        "HOST": DB_HOST,
-        "PORT": DB_PORT,
+        "TYPE": 'REDIS',
+        "HOST": 'cloud.artrix.tech',
+        "PORT": '8379',
         "NAME": "proxy",
-        "PASSWORD": DB_PASSWORD
+        "PASSWORD": 'redis4artrix'
     }
 }
 

@@ -53,7 +53,8 @@ class RawProxyCheck(ProxyManager, Thread):
                     self.log.info(
                         'RawProxyCheck - {}  : {} validation pass'.format(self.name, proxy_obj.proxy.ljust(20)))
             else:
-                self.log.info('RawProxyCheck - {}  : {} validation fail'.format(self.name, proxy_obj.proxy.ljust(20)))
+                pass
+                # self.log.info('RawProxyCheck - {}  : {} validation fail'.format(self.name, proxy_obj.proxy.ljust(20)))
             self.queue.task_done()
 
 
@@ -67,7 +68,7 @@ def doRawProxyCheck():
     pm.db.clear()
 
     thread_list = list()
-    for index in range(20):
+    for index in range(50):
         thread_list.append(RawProxyCheck(proxy_queue, "thread_%s" % index))
 
     for thread in thread_list:
