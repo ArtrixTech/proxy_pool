@@ -19,7 +19,7 @@ from Util import LogHandler
 from Manager import ProxyManager
 from ProxyHelper import checkProxyUseful, Proxy
 
-FAIL_COUNT = 0
+FAIL_COUNT = 3
 
 
 class UsefulProxyCheck(ProxyManager, Thread):
