@@ -15,8 +15,8 @@
 
 from lxml import etree
 
-from Util.validationClass import *
 from Util.WebRequest import WebRequest
+from Util.validationClass import *
 
 
 def robustCrawl(func):
@@ -89,6 +89,9 @@ def validUsefulProxy(proxy, delay=0):
     time.sleep(delay)
     try:
         assert SuningTimeValidation().validate(proxy)
+        time.sleep(1)
+        assert IPAPIValidation().validate(proxy)
+
         return True
     except AssertionError:
         return False

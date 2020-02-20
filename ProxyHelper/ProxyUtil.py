@@ -25,7 +25,7 @@ def checkProxyUseful(proxy_obj):
     """
 
     valid1 = validUsefulProxy(proxy_obj.proxy)
-    valid2 = validUsefulProxy(proxy_obj.proxy, delay=2)
+    valid2 = validUsefulProxy(proxy_obj.proxy, delay=5)
     if valid1 and valid2:
         proxy_obj.check_count += 1
         proxy_obj.last_status = 1
