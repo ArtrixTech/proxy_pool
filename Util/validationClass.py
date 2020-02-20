@@ -17,7 +17,7 @@ class Validation:
             proxy = proxy.decode("utf8")
         try:
             request = requests.get(self._url,
-                                   proxies={"http": "http://{proxy}".format(proxy=proxy)}, timeout=2, verify=False)
+                                   proxies={"http": "http://{proxy}".format(proxy=proxy)}, timeout=3.14, verify=False)
             return self.judge_func(request, proxy)
         except Exception as e:
             return False
